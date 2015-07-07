@@ -1,0 +1,11 @@
+microservice\amqp\gateway\UserRegistrationGateway.class
+microservice\dao\RegisteredUserRepository.class
+microservice\controllers\vo\NewRegistrationNotification.class
+microservice\controllers\vo\RegistrationResponse.class
+microservice\controllers\UserRegistrationController.class
+microservice\main\UserRegistrationMain.class
+microservice\amqp\gateway\UserRegistrationGateway$1.class
+microservice\UserRegistrationConfiguration.class
+microservice\dao\vo\RegisteredUser.class
+microservice\controllers\vo\RegistrationRequest.class
+microservice\amqp\gateway\UserServiceGateway.class

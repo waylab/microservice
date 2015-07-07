@@ -1,0 +1,10 @@
+C:\framework\workspace\user-registration\src\main\java\microservice\controllers\vo\NewRegistrationNotification.java
+C:\framework\workspace\user-registration\src\main\java\microservice\controllers\vo\RegistrationResponse.java
+C:\framework\workspace\user-registration\src\main\java\microservice\amqp\gateway\UserServiceGateway.java
+C:\framework\workspace\user-registration\src\main\java\microservice\amqp\gateway\UserRegistrationGateway.java
+C:\framework\workspace\user-registration\src\main\java\microservice\dao\RegisteredUserRepository.java
+C:\framework\workspace\user-registration\src\main\java\microservice\dao\vo\RegisteredUser.java
+C:\framework\workspace\user-registration\src\main\java\microservice\controllers\UserRegistrationController.java
+C:\framework\workspace\user-registration\src\main\java\microservice\UserRegistrationConfiguration.java
+C:\framework\workspace\user-registration\src\main\java\microservice\controllers\vo\RegistrationRequest.java
+C:\framework\workspace\user-registration\src\main\java\microservice\main\UserRegistrationMain.java
