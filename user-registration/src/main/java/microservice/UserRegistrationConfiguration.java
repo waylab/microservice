@@ -1,6 +1,7 @@
 package microservice;
 
 import org.springframework.amqp.core.TopicExchange;
+import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
@@ -22,21 +23,24 @@ public class UserRegistrationConfiguration {
 
 	@Value("${amqp.port:5672}") 
 	private int port = 5672;
+	
+	@Value("${amqp.ip:58.124.63.35}") 
+	private String ip = "58.124.63.35";
 
 	@Bean
 	public MessageConverter jsonMessageConverter() {
 		return new Jackson2JsonMessageConverter();
 	}
 	
-//	@Bean
-//	public ConnectionFactory connectionFactory() {
-//		//TODO make it possible to customize in subclasses.
-//		CachingConnectionFactory connectionFactory = new CachingConnectionFactory("localhost");
-//		connectionFactory.setUsername("guest");
-//		connectionFactory.setPassword("guest");
-//		connectionFactory.setPort(port);
-//		return connectionFactory;
-//	}
+	@Bean
+	public ConnectionFactory connectionFactory() {
+		//TODO make it possible to customize in subclasses.
+		CachingConnectionFactory connectionFactory = new CachingConnectionFactory(ip);
+		connectionFactory.setUsername("guest");
+		connectionFactory.setPassword("guest");
+		connectionFactory.setPort(port);
+		return connectionFactory;
+	}
 
 	@Bean 
 	public RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
