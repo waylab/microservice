@@ -1,13 +1,8 @@
-package microservice.controllers;
-
-import microservice.controllers.vo.NewRegistrationNotification;
-import microservice.controllers.vo.RegistrationRequest;
-import microservice.controllers.vo.RegistrationResponse;
-import microservice.dao.RegisteredUserRepository;
-import microservice.dao.vo.RegisteredUser;
+package com.samsung.microservice.controllers;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mongodb.DuplicateKeyException;
+import com.samsung.microservice.amqp.vo.NewRegistrationNotification;
+import com.samsung.microservice.controllers.vo.RegistrationRequest;
+import com.samsung.microservice.controllers.vo.RegistrationResponse;
+import com.samsung.microservice.dao.RegisteredUserRepository;
+import com.samsung.microservice.dao.vo.RegisteredUser;
 
 @RestController
 public class UserRegistrationController {
@@ -28,10 +27,6 @@ public class UserRegistrationController {
 	@Autowired
 	private RabbitTemplate rabbitTemplate;
 	
-//	@Autowired
-//	private UserServiceGateway userServiceGateway;
-	
-
 	@RequestMapping(value = {"/user"}, method = {RequestMethod.POST})
 	@ResponseBody
 	public RegistrationResponse registerUser(@RequestBody RegistrationRequest request){
@@ -40,18 +35,17 @@ public class UserRegistrationController {
 
 		registeredUserRepository.save(registeredUser);
 		
-		NewRegistrationNotification newRegistrationNotification = new NewRegistrationNotification(registeredUser.getId(), request.getEmailAddress(), request.getPassword());
+		NewRegistrationNotification newRegistrationNotification =new NewRegistrationNotification(registeredUser.getId(), request.getEmailAddress());
 		
-//		userServiceGateway.send(newRegistrationNotification);
+		rabbitTemplate.convertAndSend("user-registrations", "notify-new-user", newRegistrationNotification);
 		
-		rabbitTemplate.convertAndSend("user-registrations", "user-registrations", newRegistrationNotification);
-		
-		return new RegistrationResponse(registeredUser.getId(), request.getEmailAddress(), request.getPassword());
+		return new RegistrationResponse(registeredUser.getId(), request.getEmailAddress());
 		
 	}
 
 	@ResponseStatus(value = HttpStatus.CONFLICT, reason = "duplicate email address")
 	@ExceptionHandler(DuplicateKeyException.class)
-	public void duplicateEmailAddress() {}
+	public void duplicateEmailAddress() {
+	}
 
 }

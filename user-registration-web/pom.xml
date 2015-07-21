@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.microservice</groupId>
-	<artifactId>user-registration</artifactId>
+	<groupId>com.samsung.microservice</groupId>
+	<artifactId>user-registration-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
@@ -42,6 +42,11 @@
 			<version>3.1.1</version>
 		</dependency>
 		<dependency>
+    		<groupId>org.webjars.bower</groupId>
+    		<artifactId>jqurey</artifactId>
+    		<version>2.1.4</version>
+		</dependency>
+		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>jquery-validation</artifactId>
 			<version>1.11.1</version>
@@ -69,6 +74,11 @@
 			<groupId>rhino</groupId>
 			<artifactId>js</artifactId>
 			<version>1.7R1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j-cypher-compiler-2.1</artifactId>
+			<version>2.1.5</version>
 		</dependency>
 	</dependencies>
 

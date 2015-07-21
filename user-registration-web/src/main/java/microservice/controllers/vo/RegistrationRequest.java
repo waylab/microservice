@@ -15,6 +15,7 @@ public class RegistrationRequest {
 	@Size(min = 8, max = 30)
 	private String password;
 
+	public RegistrationRequest(){}
 	
 	public RegistrationRequest(String emailAddress, String password) {
 		super();

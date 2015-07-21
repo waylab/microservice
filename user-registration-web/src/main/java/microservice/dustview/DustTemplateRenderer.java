@@ -1,17 +1,5 @@
 package microservice.dustview;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import reactor.core.composable.Promise;
-
-import javax.script.Invocable;
-import javax.script.ScriptEngineManager;
-import javax.script.ScriptEngine;
-import javax.script.ScriptException;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -19,6 +7,21 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+
+import javax.script.Invocable;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
+
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import scala.concurrent.Await;
+import scala.concurrent.Promise;
+import scala.concurrent.duration.Duration;
+import scala.concurrent.impl.Promise.DefaultPromise;
 
 public class DustTemplateRenderer {
 
@@ -36,7 +39,7 @@ public class DustTemplateRenderer {
 		logger.debug("Creating new engine!!!");
 		
 		ScriptEngineManager engineManager = new ScriptEngineManager();
-		ScriptEngine engine = engineManager.getEngineByName("nashorn");
+		engine = engineManager.getEngineByName("nashorn");
 
 		try{
 			engine.eval(new InputStreamReader(DustView.class.getResourceAsStream("/dustjs/dust-full.js")));
@@ -95,37 +98,30 @@ public class DustTemplateRenderer {
 		}
 	}
 	
+	public String renderTemplate(String templateName, Object data) {
+		Promise<String> p = new DefaultPromise<String>();
+	    try {
+	    	MyJavaCallback done = new MyJavaCallback(p);
+			invocable.invokeMethod(outputHolder, "setDone", done);
+			invocable.invokeMethod(dust, "render", templateName, data, myCallback);
 
-
-
-	public Object renderTemplate(String templateName, Object data) {
-//		Promise p = new Promise<String>();
-//		p.
-//	    invocable.invokeMethod(outputHolder, "setDone", new MyJavaCallback(p) );
-//	    invocable.invokeMethod(dust, "render", templateName, data, myCallback);
-
-//	    Await.result(p.future, 500 millis)
-		return null;
-
+			Duration duration = new scala.concurrent.duration.FiniteDuration(500, java.util.concurrent.TimeUnit.MILLISECONDS);
+			return Await.result(p.future(), duration);
+	    } catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	    return "";
 	}
 	
 	public Object createObject() {
 		try {
 			return engine.eval("Object.create(Object)");
 		} catch (ScriptException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
 
-	public void done(Object err, Object out, Promise<String> p) {
-//		if (err == null)
-//			p.onSuccess((String) out);
-//		else {
-//			p.onError()failure(new RuntimeException(err.toString))
-//		}
-	}
 }
 
 class FileSource implements TemplateSource{

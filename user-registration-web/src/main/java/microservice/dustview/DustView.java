@@ -17,15 +17,16 @@ public class DustView extends AbstractTemplateView {
 
 	public void renderMergedTemplateModel(Map<String, Object> model, HttpServletRequest request, HttpServletResponse response) {
 
-		String templateName = getUrl();
-		String file = templateName.substring("/WEB-INF/views/".length());
+		String templateName = getUrl().substring("/WEB-INF/views/".length());
+		String file = "/dustjsviews/" + templateName;
 
 		TemplateSource templateSource = new ClasspathSource();
 		templateSource.setResource(file);
 		
-		dustTemplateRendererHolder().get().renderTemplate(templateName, templateSource);
+		DustTemplateRenderer dustTemplateRenderer= dustTemplateRendererHolder().get();
+		dustTemplateRenderer.compileTemplate(templateName, templateSource);
 		
-		String output = (String) dustTemplateRendererHolder().get().renderTemplate(templateName, toJSObject(model));
+		String output = dustTemplateRenderer.renderTemplate(templateName, toJSObject(model));
 		try {
 			response.getOutputStream().write(output.getBytes());
 		} catch (IOException e) {
@@ -33,7 +34,7 @@ public class DustView extends AbstractTemplateView {
 		}
 	}
 
-	public Map<String, Object> toJSObject(Map<String, Object> javaMap) {
+	public Object toJSObject(Map<String, Object> javaMap) {
 		@SuppressWarnings("unchecked")
 		Map<String, Object> jsObject = (Map<String, Object>) dustTemplateRendererHolder().get().createObject();
 		for(String key : javaMap.keySet()){
@@ -48,7 +49,7 @@ public class DustView extends AbstractTemplateView {
 						toMap.put(i.getField(), (Object) i.getDefaultMessage());
 					}
 				
-					Map<String, Object> fieldErrors = toJSObject(toMap);
+					Map<String, Object> fieldErrors = (Map<String, Object>) toJSObject(toMap);
 					jsObject.put("fieldErrors", fieldErrors);
 				}
 				if (!br.getGlobalErrors().isEmpty()) {

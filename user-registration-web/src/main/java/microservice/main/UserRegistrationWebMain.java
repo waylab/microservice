@@ -1,14 +1,14 @@
 package microservice.main;
 
-import microservice.UserRegistrationConfiguration;
+import microservice.UserRegistrationWebConfiguration;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class UserRegistrationMain {
+public class UserRegistrationWebMain {
 
     public static void main(String[] args) {
-        SpringApplication.run(UserRegistrationConfiguration.class, args);
+        SpringApplication.run(UserRegistrationWebConfiguration.class, args);
     }
 }

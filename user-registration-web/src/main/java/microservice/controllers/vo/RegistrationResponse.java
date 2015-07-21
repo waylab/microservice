@@ -4,6 +4,8 @@ public class RegistrationResponse {
 	private String id;
 	private String emailAddress;
 	
+	public RegistrationResponse(){}
+	
 	public RegistrationResponse(String id, String emailAddress) {
 		super();
 		this.id = id;

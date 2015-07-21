@@ -16,13 +16,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class UserRegistrationDustController {
+public class UserRegistrationWebController {
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -56,7 +55,6 @@ public class UserRegistrationDustController {
 				return "register";
 			}
 		}
-
 
 		if(HttpStatus.OK.compareTo(response.getStatusCode()) >= 0){
 			redirectAttributes.addAttribute("emailAddress", request.getEmailAddress());

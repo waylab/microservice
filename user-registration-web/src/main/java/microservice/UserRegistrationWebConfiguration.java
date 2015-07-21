@@ -1,5 +1,7 @@
 package microservice;
 
+import java.util.List;
+
 import microservice.dustview.DustViewResolver;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -16,12 +18,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan
-public class UserRegistrationConfiguration {
-
+public class UserRegistrationWebConfiguration {
+	
 	@Bean
 	public DustViewResolver dustViewResolver(){
 		DustViewResolver resolver = new DustViewResolver();
-		resolver.setPrefix("/dustjsviews/");
+		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".dust");
 		return resolver;
 	}
@@ -36,9 +38,12 @@ public class UserRegistrationConfiguration {
 	@Bean
 	public RestTemplate restTemplate() {
 		RestTemplate restTemplate = new RestTemplate();
-		for (HttpMessageConverter<?> httpMessageConverter : restTemplate.getMessageConverters()) {
-			if(httpMessageConverter instanceof MappingJackson2HttpMessageConverter){
-				((MappingJackson2HttpMessageConverter)httpMessageConverter).setObjectMapper(jacksonObjectMapper());
+		List<HttpMessageConverter<?>> converters = restTemplate.getMessageConverters();
+		for (HttpMessageConverter<?> converter : converters) {
+			if(converter  instanceof MappingJackson2HttpMessageConverter){
+				MappingJackson2HttpMessageConverter jsonConverter = (MappingJackson2HttpMessageConverter) converter;
+//			    jsonConverter.setObjectMapper(objectMapper);
+			    jsonConverter.setObjectMapper(jacksonObjectMapper());
 			}
 		}
 

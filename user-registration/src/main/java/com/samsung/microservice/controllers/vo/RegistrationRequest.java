@@ -1,4 +1,4 @@
-package microservice.controllers.vo;
+package com.samsung.microservice.controllers.vo;
 
 public class RegistrationRequest {
 	private String emailAddress;

@@ -1,4 +1,4 @@
-package microservice.dao.vo;
+package com.samsung.microservice.dao.vo;
 
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;

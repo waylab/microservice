@@ -9,7 +9,7 @@ $(function() {
 			},
 			password: {
 				required: true,
-				minlength: 5
+				minlength: 1
 			}
 		},
 
