@@ -1,6 +1,6 @@
 package demo;
 
-import microservice.main.UserRegistrationWebMain;
+import microservice.main.UserRegistrationWebApplication;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = UserRegistrationWebMain.class)
+@SpringApplicationConfiguration(classes = UserRegistrationWebApplication.class)
 @WebAppConfiguration
 public class DemoApplicationTests {
 

@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.samsung.microservice.UserRegistrationConfiguration;
 
 @SpringBootApplication
-public class UserRegistrationMain {
+public class UserRegistrationApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(UserRegistrationConfiguration.class, args);

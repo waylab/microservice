@@ -7,7 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>java:com.samsung.microservice.main.UserRegistrationWebMain</config>
+		<config>java:microservice.main.UserRegistrationWebApplication</config>
 	</configs>
 	<autoconfigs>
 		<config>java:microservice.UserRegistrationWebConfiguration</config>
