@@ -35,11 +35,11 @@ public abstract class AbstractUserConfiguration {
 
 	protected static String ROUTING_KEY = "notify-new-user";
 	
-	@Value("${amqp.ip:localhost}") 
-	private String ip = "localhost";
+	@Value("${amqp.ip:70.12.114.116}") 
+	private String ip;
 	
 	@Value("${amqp.port:5672}") 
-	private int port = 5672;
+	private int port;
 	
 
 	protected abstract void configureRabbitTemplate(RabbitTemplate template);
