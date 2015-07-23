@@ -9,14 +9,14 @@ $(function() {
 			},
 			password: {
 				required: true,
-				minlength: 1
+				minlength: 8
 			}
 		},
 
 		messages: {
 			password: {
 				required: "Please provide a password",
-				minlength: "Your password must be at least 5 characters long"
+				minlength: "Your password must be at least 8 characters long"
 			},
 			email: "Please enter a valid email address"
 		},
