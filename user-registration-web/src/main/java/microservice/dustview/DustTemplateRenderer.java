@@ -152,7 +152,6 @@ class ClasspathSource implements TemplateSource{
 		try {
 			return IOUtils.toString(getClass().getResourceAsStream((String) resource));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
