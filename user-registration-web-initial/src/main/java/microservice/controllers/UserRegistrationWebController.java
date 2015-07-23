@@ -43,10 +43,7 @@ public class UserRegistrationWebController {
 
 		ResponseEntity<RegistrationResponse> response = null;
 		try{
-			response = restTemplate.postForEntity(
-					userRegistrationUrl
-					, new RegistrationRequest(request.getEmailAddress(), request.getPassword())
-					, RegistrationResponse.class);
+			// TODO RestTemplate의 postForEntity 메소드를 통해 "user-registration의 POST /user를 호출
 		}catch(HttpClientErrorException e) {
 			if(HttpStatus.CONFLICT.compareTo(e.getStatusCode()) <= 0){
 				bindingResult.rejectValue("emailAddress"

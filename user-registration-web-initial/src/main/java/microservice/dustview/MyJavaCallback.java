@@ -1,7 +1,5 @@
 package microservice.dustview;
 
-import org.mockito.internal.matchers.Any;
-
 import scala.concurrent.Promise;
 
 public class MyJavaCallback {

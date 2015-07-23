@@ -29,7 +29,6 @@ public class EmailRabbitClientConfiguration extends AbstractEmailRabbitConfigura
 	
 	@Bean
 	public Queue userManagementQueue() {
-//		return amqpAdmin().declareQueue();
 		return new Queue(QUEUE_NAME);
 	}
 

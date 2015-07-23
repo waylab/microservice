@@ -29,7 +29,6 @@ public class UserRabbitClientConfiguration extends AbstractUserRabbitConfigurati
 	
 	@Bean
 	public Queue userManagementQueue() {
-//		return amqpAdmin().declareQueue();
 		return new Queue(QUEUE_NAME);
 	}
 

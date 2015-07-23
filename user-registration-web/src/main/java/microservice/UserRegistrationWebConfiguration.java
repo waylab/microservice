@@ -42,7 +42,6 @@ public class UserRegistrationWebConfiguration {
 		for (HttpMessageConverter<?> converter : converters) {
 			if(converter  instanceof MappingJackson2HttpMessageConverter){
 				MappingJackson2HttpMessageConverter jsonConverter = (MappingJackson2HttpMessageConverter) converter;
-//			    jsonConverter.setObjectMapper(objectMapper);
 			    jsonConverter.setObjectMapper(jacksonObjectMapper());
 			}
 		}
