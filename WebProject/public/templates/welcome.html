@@ -1,0 +1,20 @@
+<table class="table simple hover">
+    <thead>
+    <tr>
+        {{#each tableheaders}}
+        <th>{{this}}</th>
+        {{/each}}
+    </tr>
+    </thead>
+
+    <tbody>
+    {{#each tabledatas}}
+    <tr>
+        <td>{{id}}</td>
+        <td>{{name}}</td>
+        <td>{{age}}</td>
+        <td>{{address}}</td>
+    </tr>
+    {{/each}}
+    </tbody>
+</table>

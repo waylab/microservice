@@ -1,0 +1,13 @@
+#section {
+    margin: 12px;
+    min-height: 860px;
+}
+
+footer {
+    margin: 21px;
+}
+
+#app-wrap {
+    width: 100%;
+    height: 100%;
+}
