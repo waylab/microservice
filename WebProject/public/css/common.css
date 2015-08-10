@@ -1,13 +1,8 @@
-#section {
-    margin: 12px;
-    min-height: 860px;
-}
+#section {margin: 12px; min-height: 860px;}
+footer {margin: 21px;}
+#app-wrap {width: 100%;height: 100%;}
+li {list-style-type: none;}
 
-footer {
-    margin: 21px;
-}
-
-#app-wrap {
-    width: 100%;
-    height: 100%;
-}
+.chart-bottom {margin-top: 30px;}
+.no-bullet-ul {padding-left: 0;}
+.set-li {margin-bottom: 15px;}

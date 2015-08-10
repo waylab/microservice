@@ -1,0 +1,19 @@
+{{#each this}}
+<li class="set-li">
+    <div class="panel">
+        <div class="head">
+            {{#if panelhead}}
+            <strong>{{panelhead}}</strong>
+            {{/if}}
+        </div>
+        <div class="body">
+            {{panelbody}}
+        </div>
+        {{#if panelfooter}}
+        <div class="foot">
+            {{panelfooter}}
+        </div>
+        {{/if}}
+    </div>
+</li>
+{{/each}}

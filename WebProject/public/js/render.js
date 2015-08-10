@@ -8,11 +8,9 @@
     template.RenderOne = function (opt) {
 
         var tmpl = Handlebars.compile(opt.template);
-
         var elem = new (Backbone.View.extend(opt));
 
         elem.$el.html(tmpl(opt.data));
-
         $(elem.el).addClass(opt.className).attr('id', opt.id);
 
         if (opt.position == "new") {
@@ -26,10 +24,6 @@
         } else {
             $(opt.target).append(elem.el);
         }
-    };
-
-    template.RenderList = function (opt) {
-
     };
 
 }).call(this);
